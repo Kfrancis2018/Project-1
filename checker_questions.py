@@ -11,7 +11,7 @@ odd = [1,3,5,7]
 # init
 even_row = [(i,j) for i in even for j in odd]
 odd_row = [(i,j) for i in odd for j in even]
-
+ 
 black_squares = even_row + odd_row
 
 class Checker(TwoPlayerGame):
@@ -42,7 +42,7 @@ class Checker(TwoPlayerGame):
         self.players[1].pos = self.black_pieces
 
         self.current_player = 1  # player 1 starts.
-
+        
     def possible_moves_on_white_turn(self):
 
         table_pos = []
@@ -176,9 +176,7 @@ class Checker(TwoPlayerGame):
          [0,0,0,0,0,0,0,0],
          [0,W,0,W,0,W,0,W],
          [W,0,W,0,W,0,W,0]]
-        ------
-        """
-
+        ------   
         tempB =[]
         tempW =[]
         for j in range(8):
@@ -190,6 +188,9 @@ class Checker(TwoPlayerGame):
         
         self.players[0].pos = tempW
         self.players[1].pos = tempB
+        """
+        self.players[self.current_player-1].pos = self.get_piece_pos_from_table(pos)
+     
         
 
     def lose(self):
@@ -198,19 +199,10 @@ class Checker(TwoPlayerGame):
         white lose if black piece is in black territory
         """
         if self.current_player == 1:
-            if list(set(self.players[1].pos) & set(self.white_territory)) == []:
-                
-                return False
-            else:
-                print("Black has won")
-                return True
+            return list(set(self.players[1].pos) & set(self.white_territory)) != []
         else:
-            if list(set(self.players[0].pos) & set(self.black_territory)) == []:
-                return False
-            else:
-                print("White has won")
-                return True
-                
+            return list(set(self.players[0].pos) & set(self.black_territory)) != []
+           
 
 
     def is_over(self):
