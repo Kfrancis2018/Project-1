@@ -1,4 +1,4 @@
-# [[file:checker.org::*questions][questions:1]]
+    # [[file:checker.org::*questions][questions:1]]
 # !/usr/bin/env python3
 from easyAI import TwoPlayerGame, Human_Player, AI_Player, Negamax
 from easyAI import solve_with_iterative_deepening
@@ -11,7 +11,7 @@ odd = [1,3,5,7]
 # init
 even_row = [(i,j) for i in even for j in odd]
 odd_row = [(i,j) for i in odd for j in even]
- 
+
 black_squares = even_row + odd_row
 
 class Checker(TwoPlayerGame):
@@ -42,7 +42,7 @@ class Checker(TwoPlayerGame):
         self.players[1].pos = self.black_pieces
 
         self.current_player = 1  # player 1 starts.
-        
+
     def possible_moves_on_white_turn(self):
 
         table_pos = []
@@ -163,11 +163,9 @@ class Checker(TwoPlayerGame):
     def make_move(self, pos):
         """
         assign pieces index of pos array to current player position.
-
         parameters
         -------
         pos = position of all pieces on the (8 x 8) boards. type numpy array.
-
         example of pos
         [[0,B,0,B,0,B,0,B],
          [B,0,B,0,B,0,B,0],
@@ -176,22 +174,9 @@ class Checker(TwoPlayerGame):
          [0,0,0,0,0,0,0,0],
          [0,W,0,W,0,W,0,W],
          [W,0,W,0,W,0,W,0]]
-        ------   
-        tempB =[]
-        tempW =[]
-        for j in range(8):
-            for i in range(8):
-                if pos[j,i]=='B':
-                    tempB.append((j,i))
-                if pos[j,i]=='W':
-                    tempW.append((j,i))
-        
-        self.players[0].pos = tempW
-        self.players[1].pos = tempB
+        ------
         """
         self.players[self.current_player-1].pos = self.get_piece_pos_from_table(pos)
-     
-        
 
     def lose(self):
         """
@@ -202,14 +187,12 @@ class Checker(TwoPlayerGame):
             return list(set(self.players[1].pos) & set(self.white_territory)) != []
         else:
             return list(set(self.players[0].pos) & set(self.black_territory)) != []
-           
-
 
     def is_over(self):
         """
         game is over immediately when one player get one of its piece into opponent's territory.
         """
-        return (self.possible_moves() == []) or self.lose()
+        return ((self.possible_moves() == []) or self.lose())
 
     def show(self):
         """
@@ -233,8 +216,10 @@ class Checker(TwoPlayerGame):
        """
        return -100 if self.lose() else 0
 
+
 if __name__ == "__main__":
     ai = Negamax(1) # The AI will think 13 moves in advance
     game = Checker( [ AI_Player(ai), AI_Player(ai) ] )
     history = game.play()
 # questions:1 ends here
+
