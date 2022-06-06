@@ -176,6 +176,7 @@ class Checker(TwoPlayerGame):
          [W,0,W,0,W,0,W,0]]
         ------
         """
+        
         # calls the position of the current players peices and assigns it to the new positions postion from pos 
         self.players[self.current_player-1].pos = self.get_piece_pos_from_table(pos)
 
