@@ -189,16 +189,16 @@ class Checker(TwoPlayerGame):
         if self.current_player == 1:
             # creates a list by finding the intersection of the player positions and the white territory
             #if the lis tis not impty then the respective player wins
-            return list(set(self.players[1].pos) & set(self.white_territory)) != []
+            return list(set(self.players[1].pos) & set(self.white_territory)) != [] 
         else:
-            return list(set(self.players[0].pos) & set(self.black_territory)) != []
+            return list(set(self.players[0].pos) & set(self.black_territory)) != [] 
 
     def is_over(self):
         """
         game is over immediately when one player get one of its piece into opponent's territory.
         """
-        # returnes the value of self self.lose  to end the game or if there are no possible moves
-        return ((self.possible_moves() == []) or self.lose())
+        # returnes the value of self self.lose  if true the game is ended
+        return self.lose() or (len(self.possible_moves()) == 0)
 
     def show(self):
         """
