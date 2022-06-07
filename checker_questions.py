@@ -192,13 +192,13 @@ class Checker(TwoPlayerGame):
             return list(set(self.players[1].pos) & set(self.white_territory)) != [] 
         else:
             return list(set(self.players[0].pos) & set(self.black_territory)) != [] 
-
     def is_over(self):
         """
         game is over immediately when one player get one of its piece into opponent's territory.
         """
         # returnes the value of self self.lose  if true the game is ended
-        return self.lose() or (len(self.possible_moves()) == 0)
+        return self.lose() or (self.possible_moves() == "")
+
 
     def show(self):
         """
@@ -216,12 +216,11 @@ class Checker(TwoPlayerGame):
         print(board)
 
     def scoring(self):
-       """
-       win = 0
-       lose = -100
-       """
-       return -100 if self.lose() else 0
-
+        """
+        win = 0
+        lose = -100
+        """
+        return -100 if self.lose() else 0
 
 if __name__ == "__main__":
     ai = Negamax(1) # The AI will think 13 moves in advance
