@@ -1,9 +1,3 @@
-#Name: Keanu Francis
-#Z#:Z23456741
-#Due Date: 6/17/2022
-#Project 1
-
-
     # [[file:checker.org::*questions][questions:1]]
 # !/usr/bin/env python3
 from easyAI import TwoPlayerGame, Human_Player, AI_Player, Negamax
@@ -87,7 +81,7 @@ class Checker(TwoPlayerGame):
 
         # board position after  move
         for i,j in old_new_piece_pos:
-            #print(f"i = {i}")
+            print(f"i = {i}")
             b = board.copy()
             b[i[0], i[1]] = 0 # old position
             b[j[0], j[1]] = "W" # new position
@@ -194,7 +188,7 @@ class Checker(TwoPlayerGame):
         # determines if the current player is white else if black
         if self.current_player == 1:
             # creates a list by finding the intersection of the player positions and the white territory
-            #if the list is not empty then the respective player the current player looses
+            #if the lis tis not impty then the respective player wins
             return list(set(self.players[1].pos) & set(self.white_territory)) != [] 
         else:
             return list(set(self.players[0].pos) & set(self.black_territory)) != [] 
@@ -202,9 +196,7 @@ class Checker(TwoPlayerGame):
         """
         game is over immediately when one player get one of its piece into opponent's territory.
         """
-        
-        # returns the value of self self.lose  if true the game is ended
-        # the the game ends if the player does not have anime moves left
+        # returnes the value of self self.lose  if true the game is ended
         return self.lose() or (self.possible_moves() == "")
 
 
@@ -228,12 +220,7 @@ class Checker(TwoPlayerGame):
         win = 0
         lose = -100
         """
-        
-        if self.lose():
-            return -100
-        else:
-            return 0
-        #return -100 if self.lose() else 0
+        return -100 if self.lose() else 0
 
 if __name__ == "__main__":
     ai = Negamax(1) # The AI will think 13 moves in advance
