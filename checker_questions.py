@@ -180,7 +180,7 @@ class Checker(TwoPlayerGame):
         ------
         """
         
-        # calls the position of the current players peices and assigns it to the new positions postion from pos 
+        # calls the position of the current players pieces and assigns it to the new positions postion from pos 
         self.players[self.current_player-1].pos = self.get_piece_pos_from_table(pos)
 
     def lose(self):
@@ -191,7 +191,7 @@ class Checker(TwoPlayerGame):
         # determines if the current player is white else if black
         if self.current_player == 1:
             # creates a list by finding the intersection of the player positions and the white territory
-            #if the lis tis not impty then the respective player wins
+            #if the list is not empty then the respective player wins
             return list(set(self.players[1].pos) & set(self.white_territory)) != [] 
         else:
             return list(set(self.players[0].pos) & set(self.black_territory)) != [] 
@@ -199,7 +199,7 @@ class Checker(TwoPlayerGame):
         """
         game is over immediately when one player get one of its piece into opponent's territory.
         """
-        # returnes the value of self self.lose  if true the game is ended
+        # returns the value of self self.lose()  if true the game is ended
         return self.lose() or (self.possible_moves() == "")
 
 
